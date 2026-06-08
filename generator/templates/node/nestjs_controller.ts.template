@@ -1,0 +1,35 @@
+import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+
+@Controller('{{componentname}}')
+export class {{ComponentName}}Controller {
+
+  @Get()
+  findAll() {
+    // TODO: return all {{ComponentName}}
+    return [];
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    // TODO: return one {{ComponentName}}
+    return {};
+  }
+
+  @Post()
+  create(@Body() data: any) {
+    // TODO: create {{ComponentName}}
+    return data;
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() data: any) {
+    // TODO: update {{ComponentName}}
+    return data;
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    // TODO: delete {{ComponentName}}
+    return { deleted: id };
+  }
+}

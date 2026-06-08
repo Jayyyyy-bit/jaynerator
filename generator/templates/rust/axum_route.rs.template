@@ -1,0 +1,44 @@
+use axum::{
+    routing::{get, post, put, delete},
+    Router, Json, extract::Path,
+};
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize)]
+pub struct {{ComponentName}} {
+    pub id:   Option<u32>,
+    pub name: String,
+    // TODO: add your fields here
+}
+
+pub fn router() -> Router {
+    Router::new()
+        .route("/{{componentname}}",     get(get_all).post(create))
+        .route("/{{componentname}}/:id", get(get_one).put(update).delete(remove))
+}
+
+async fn get_all() -> Json<Vec<{{ComponentName}}>> {
+    // TODO: return all {{ComponentName}}
+    Json(vec![])
+}
+
+async fn get_one(Path(id): Path<u32>) -> Json<{{ComponentName}}> {
+    // TODO: return one {{ComponentName}}
+    Json({{ComponentName}} { id: Some(id), name: String::new() })
+}
+
+async fn create(Json(data): Json<{{ComponentName}}>) -> Json<{{ComponentName}}> {
+    // TODO: create {{ComponentName}}
+    Json(data)
+}
+
+async fn update(Path(id): Path<u32>, Json(mut data): Json<{{ComponentName}}>) -> Json<{{ComponentName}}> {
+    // TODO: update {{ComponentName}}
+    data.id = Some(id);
+    Json(data)
+}
+
+async fn remove(Path(id): Path<u32>) -> Json<serde_json::Value> {
+    // TODO: delete {{ComponentName}}
+    Json(serde_json::json!({ "deleted": id }))
+}

@@ -1,0 +1,33 @@
+import requests
+from bs4 import BeautifulSoup
+
+class {{ComponentName}}:
+    def __init__(self, base_url: str):
+        self.base_url = base_url
+        self.session  = requests.Session()
+        self.session.headers.update({
+            "User-Agent": "Mozilla/5.0"
+        })
+
+    def fetch(self, url: str) -> BeautifulSoup:
+        response = self.session.get(url)
+        response.raise_for_status()
+        return BeautifulSoup(response.text, "html.parser")
+
+    def scrape(self) -> list:
+        soup = self.fetch(self.base_url)
+        results = []
+        # TODO: add your scraping logic here
+        return results
+
+    def save(self, data: list, filename: str = "output.json") -> None:
+        import json
+        with open(filename, "w") as f:
+            json.dump(data, f, indent=2)
+        print(f"Saved {len(data)} records to {filename}")
+
+
+if __name__ == "__main__":
+    scraper = {{ComponentName}}("https://example.com")
+    data    = scraper.scrape()
+    scraper.save(data)

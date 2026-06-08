@@ -1,0 +1,11 @@
+from pydantic import BaseModel
+from typing import Optional
+
+class {{ComponentName}}(BaseModel):
+    id:   Optional[int] = None
+    name: str
+    # TODO: add your fields here
+
+class {{ComponentName}}Update(BaseModel):
+    name: Optional[str] = None
+    # TODO: add your update fields here

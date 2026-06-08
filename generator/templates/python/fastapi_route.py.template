@@ -1,0 +1,29 @@
+from fastapi import APIRouter, HTTPException
+from .{{ComponentName}}_model import {{ComponentName}}
+
+router = APIRouter(prefix="/{{ComponentName.lower()}}", tags=["{{ComponentName}}"])
+
+@router.get("/")
+async def get_all():
+    # TODO: return all {{ComponentName}}
+    return []
+
+@router.get("/{id}")
+async def get_one(id: int):
+    # TODO: return single {{ComponentName}}
+    return {}
+
+@router.post("/")
+async def create(data: {{ComponentName}}):
+    # TODO: create {{ComponentName}}
+    return data
+
+@router.put("/{id}")
+async def update(id: int, data: {{ComponentName}}):
+    # TODO: update {{ComponentName}}
+    return data
+
+@router.delete("/{id}")
+async def delete(id: int):
+    # TODO: delete {{ComponentName}}
+    return {"deleted": id}

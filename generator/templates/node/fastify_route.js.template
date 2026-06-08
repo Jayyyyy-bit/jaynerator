@@ -1,0 +1,33 @@
+async function {{ComponentName}}Routes(fastify, options) {
+
+  fastify.get('/', async (request, reply) => {
+    // TODO: get all {{ComponentName}}
+    return [];
+  });
+
+  fastify.get('/:id', async (request, reply) => {
+    const { id } = request.params;
+    // TODO: get one {{ComponentName}}
+    return {};
+  });
+
+  fastify.post('/', async (request, reply) => {
+    const data = request.body;
+    // TODO: create {{ComponentName}}
+    reply.status(201).send(data);
+  });
+
+  fastify.put('/:id', async (request, reply) => {
+    const data = request.body;
+    // TODO: update {{ComponentName}}
+    return data;
+  });
+
+  fastify.delete('/:id', async (request, reply) => {
+    const { id } = request.params;
+    // TODO: delete {{ComponentName}}
+    return { deleted: id };
+  });
+}
+
+module.exports = {{ComponentName}}Routes;

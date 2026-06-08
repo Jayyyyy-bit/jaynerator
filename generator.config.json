@@ -1,0 +1,8 @@
+{
+  "component": "src",
+  "page": "src",
+  "form": "src",
+  "hook": "src",
+  "modal": "src",
+  "layout": "src"
+}

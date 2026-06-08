@@ -1,0 +1,15 @@
+import React from 'react';
+
+interface {{ComponentName}}Props {
+  // define your props here
+}
+
+const {{ComponentName}}: React.FC<{{ComponentName}}Props> = () => {
+  return (
+    <div className="flex flex-col items-center justify-center p-4">
+      <h1 className="text-2xl font-bold text-gray-800">{{ComponentName}}</h1>
+    </div>
+  );
+};
+
+export default {{ComponentName}};

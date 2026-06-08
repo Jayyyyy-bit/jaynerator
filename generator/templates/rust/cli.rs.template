@@ -1,0 +1,42 @@
+use clap::{Parser, Subcommand};
+
+#[derive(Parser)]
+#[command(name = "{{ComponentName}}")]
+#[command(about = "{{ComponentName}} CLI tool", long_about = None)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+    /// Run the main command
+    Run {
+        /// Input value
+        #[arg(short, long)]
+        input: String,
+
+        /// Enable verbose output
+        #[arg(short, long, default_value_t = false)]
+        verbose: bool,
+    },
+    /// Show version info
+    Version,
+}
+
+fn main() {
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Commands::Run { input, verbose } => {
+            if *verbose {
+                println!("Running {{ComponentName}} with input: {}", input);
+            }
+            // TODO: add your logic here
+            println!("Done!");
+        }
+        Commands::Version => {
+            println!("{{ComponentName}} v0.1.0");
+        }
+    }
+}
