@@ -4,12 +4,12 @@ from generator.ui import clear, prompt, error
 from generator.hooks import register
 from generator.plugins import registry
 from commands import interactive, cli, dry_run, setup, \
-                     python_mode, node_mode, rust_mode, \
-                     doctor, fullstack_mode, recipe_mode
+    python_mode, node_mode, rust_mode, \
+    doctor, fullstack_mode, recipe_mode
 
 
-def on_after_generate(type, name, path, **kwargs):
-    print(f"\n  [HOOK] after_generate fired → {name} at {path}")
+def on_after_generate(ctx, **kwargs):
+    print(f"\n  [HOOK] after_generate → {ctx}")
 
 
 register("after_generate", on_after_generate)
@@ -26,7 +26,7 @@ COMMANDS = {
     "8": doctor.run,
     "9": fullstack_mode.run,
     "0": recipe_mode.run
-}       
+}
 
 
 def show_welcome():

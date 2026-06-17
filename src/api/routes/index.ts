@@ -1,2 +1,1 @@
-export { default as Try } from "./Try";
 export { default as Prod } from "./Prod";
