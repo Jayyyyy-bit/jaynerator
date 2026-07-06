@@ -6,6 +6,7 @@ from generator.plugins import registry
 from commands import interactive, cli, dry_run, setup, \
     python_mode, node_mode, rust_mode, \
     doctor, fullstack_mode, recipe_mode
+from generator.logger import setup_logger, logger
 
 
 def on_after_generate(ctx, **kwargs):
@@ -99,3 +100,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+if "--debug" in sys.argv:
+    sys.argv.remove("--debug")
+    setup_logger(debug=True)
+    logger.debug("Debug mode enabled")

@@ -1,5 +1,7 @@
 import os
 import re
+from generator.config import CONFIG
+from generator.logger import logger
 
 
 def parse_exports(content: str) -> list[str]:
@@ -14,11 +16,11 @@ def build_export(name: str) -> str:
 
 
 def update_index(index_path: str, name: str) -> None:
-    """
-    Safely add a new export to an index.ts barrel file.
-    Creates the file if it doesn't exist.
-    Skips if export already exists.
-    """
+     
+    if CONFIG["dry_run"]:
+        logger.info(f"[DRY RUN] Would update index: {index_path}")
+        return
+
     # ── Read existing content ─────────────────────────────────────
     if os.path.exists(index_path):
         with open(index_path, "r") as f:

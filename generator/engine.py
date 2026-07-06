@@ -7,6 +7,7 @@ from generator.ast_tools.index_updater import update_index
 from generator.ast_tools.python_builder import build_fastapi_route, build_fastapi_model
 from generator.ast_tools.ts_builder import build as ts_build
 from generator.context import GenerationContext
+from generator.logger import logger
 
 # ── AST builders ──────────────────────────────────────────────────
 AST_BUILDERS = {
@@ -34,18 +35,18 @@ def get_template(template_name: str, stack: str = "frontend", plugin_name: str =
 
 def write_file(file_path: str, content: str) -> None:
     if os.path.exists(file_path) and not CONFIG["overwrite"]:
-        print(f"    Skipped — file already exists: {file_path}")
+        logger.warning(f"Skipped — file already exists: {file_path}")
         return
 
     if CONFIG["dry_run"]:
-        print(f"   [DRY RUN] Would create: {file_path}")
+        logger.info(f"[DRY RUN] Would create: {file_path}")
         return
 
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, "w") as f:
         f.write(content)
 
-    print(f"  Created: {file_path}")
+    logger.info(f"Created: {file_path}")
     log_generated(file_path)
     fire("after_write", file_path=file_path)
 
@@ -76,7 +77,7 @@ def generate(type: str, name: str, plugin_name: str = "react") -> None:
     plugin = registry.get(plugin_name)
 
     if not PATHS or type not in PATHS:
-        print(f"  Unknown type '{type}'.")
+        logger.error(f"Unknown type '{type}'.")
         return
 
     # Build context
